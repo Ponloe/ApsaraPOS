@@ -2,22 +2,22 @@
 @section('content')
 
 <main>
-  <div class="container mt-5">
+  <div class="container-fluid mt-4">
     <div class="card">
       <div class="card-header">
         Add Category
       </div>
       <div class="card-body">
         <form>
-          <div class="form-group">
+          <div class="col-md-12 mb-3">
             <label for="categoryName">Name *</label>
             <input type="text" class="form-control" id="categoryName" placeholder="Enter category name">
           </div>
-          <div class="form-group">
+          <div class="col-md-12 mb-3">
             <label for="categoryDescription">Description</label>
             <textarea class="form-control" id="categoryDescription" rows="3" placeholder="Enter category description"></textarea>
           </div>
-          <div class="form-group form-check">
+          <div class="col-md-12 mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="categoryStatus">
             <label class="form-check-label" for="categoryStatus">Status (Checked=Hidden, UnChecked=Visible)</label>
           </div>

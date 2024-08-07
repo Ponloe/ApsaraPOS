@@ -19,15 +19,14 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Name</th>
-                            <th>Code</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>Warehouse</th>
+                            <th>Option</th>
+                            
                         </tr>
                     </thead>
-                    <tfoot>
+                    <!-- <tfoot>
                         <tr>
                             <th>Name</th>
                             <th>Position</th>
@@ -36,17 +35,15 @@
                             <th>Start date</th>
                             <th>Salary</th>
                         </tr>
-                    </tfoot>
+                    </tfoot> -->
                     <tbody>
                         <tr>
                             <td>Tiger Nixon</td>
                             <td>System Architect</td>
                             <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
+                            <td>Edinburgh</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td>Garrett Winters</td>
                             <td>Accountant</td>
                             <td>Tokyo</td>
@@ -493,12 +490,13 @@
                             <td>27</td>
                             <td>2011/01/25</td>
                             <td>$112,000</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </main>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 @endsection

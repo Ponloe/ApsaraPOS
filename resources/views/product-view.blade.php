@@ -4,7 +4,7 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Product</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item" ><a href="dashboard" style="text-decoration: none;">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="dashboard" style="text-decoration: none;">Dashboard</a></li>
             <li class="breadcrumb-item active">Tables</li>
         </ol>
         <div class="card mb-4">
@@ -19,15 +19,17 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>No.</th>
                             <th>Code</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Unit</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Details</th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    <!-- <tfoot>
                         <tr>
                             <th>Name</th>
                             <th>Position</th>
@@ -36,17 +38,97 @@
                             <th>Start date</th>
                             <th>Salary</th>
                         </tr>
-                    </tfoot>
+                    </tfoot> -->
                     <tbody>
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
+                            <td>1</td>
+                            <td>1.01 KP</td>
+                            <td>កំពូល​​​​​ កំ.២៦ស.ម.មុក.២០សម</td>
+                            <td></td>
+                            <td></td>
+                            <td>8$</td>
+                            <td>100</td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center">
+                                    <button type="button" class="btn btn-primary btn-sm mr-2" data-toggle="modal"
+                                        data-target="#editModal1">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                        data-target="#deleteModal1">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <!-- Edit Modal -->
+                                <div class="modal fade" id="editModal1" tabindex="-1" role="dialog"
+                                    aria-labelledby="editModalLabel1" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editModalLabel1">Edit Item</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="/edit-item" method="POST">
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="itemName">Code</label>
+                                                        <input type="text" class="form-control" id="itemName"
+                                                            name="itemName" value="1.01 KP">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="itemName">Name</label>
+                                                        <input type="text" class="form-control" id="itemName"
+                                                            name="itemName" value="កំពូល​​​​​ កំ.២៦ស.ម.មុក.២០សម">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="itemPrice">Price</label>
+                                                        <input type="text" class="form-control" id="itemPrice"
+                                                            name="itemPrice" value="8$">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="itemQuantity">Quantity</label>
+                                                        <input type="text" class="form-control" id="itemQuantity"
+                                                            name="itemQuantity" value="100">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Delete Confirmation Modal -->
+                                <div class="modal fade" id="deleteModal1" tabindex="-1" role="dialog"
+                                    aria-labelledby="deleteModalLabel1" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteModalLabel1">Confirm Delete</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete this item?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-danger">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
-                        <tr>
+                        <!--  <tr>
                             <td>Garrett Winters</td>
                             <td>Accountant</td>
                             <td>Tokyo</td>
@@ -493,12 +575,18 @@
                             <td>27</td>
                             <td>2011/01/25</td>
                             <td>$112,000</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </main>
-
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 @endsection
