@@ -29,14 +29,14 @@
             </div>
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                 aria-expanded="false" aria-controls="collapsePages">
-                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                Products
+                <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
+                ទំនិញ
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="{{ route('product.create') }}">Add Products</a>
-                    <a class="nav-link" href="{{ route('product.index') }}">View Products</a>
+                    <a class="nav-link" href="{{ route('product.create') }}">បញ្ចលស្តុក</a>
+                    <a class="nav-link" href="{{ route('product.index') }}">មេីលទំនិញ</a>
                 </nav>
             </div>
             <div class="sb-sidenav-menu-heading">Users</div>
@@ -55,3 +55,10 @@
         admin
     </div>
 </nav>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Khmer&family=Moulpali&family=Noto+Sans+Khmer:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+    font-family: 'Khmer', 'Moulpali', 'Noto Sans Khmer', 'Poppins', sans-serif;
+}
+</style>
