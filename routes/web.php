@@ -40,3 +40,7 @@ Route::get('/add-product', [InventoryController::class, 'create'])->name('produc
 // Category
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
 Route::get('/add-category', [CategoryController::class, 'create'])->name('category.create');
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
