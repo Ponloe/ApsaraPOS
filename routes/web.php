@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WarehouseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventoryController;
 
@@ -31,6 +32,11 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Warehouse
+Route::get('/warehouse', [WarehouseController::class, 'index'])->name('warehouse.index');
+Route::post('/warehouse', [WarehouseController::class, 'store'])->name('warehouses.store');
+Route::delete('/warehouses/{warehouse}', [WarehouseController::class, 'destroy'])->name('warehouses.destroy');
 
 // Product
 Route::get('/product', [InventoryController::class, 'index'])->name('product.index');
