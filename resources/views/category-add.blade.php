@@ -15,8 +15,8 @@
             <input type="text" class="form-control" id="categoryName" name="name" placeholder="បញ្ចូលឈ្មោះប្រភេទ" required>
           </div>
           <div class="col-md-12 mb-3">
-            <label for="categoryWarehouse">ឃ្លាំង</label>
-            <input type="text" class="form-control" id="categoryWarehouse" name="warehouse" placeholder="បញ្ចូលឈ្មេាះឃ្លាំង">
+            <label for="categoryDescription">ពិពណ៌នា</label>
+            <textarea class="form-control" id="categoryDescription" name="description" placeholder="បញ្ចូលពិពណ៌នាប្រភេទ"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Save</button>
           <button type="button" class="btn btn-danger" onclick="window.history.back();">Back</button>

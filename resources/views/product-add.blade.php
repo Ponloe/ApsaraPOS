@@ -16,7 +16,7 @@
             </select>
           </div>
           <div class="col-md-12 mb-3">
-            <label for="selectCategory">Select Warehouse *</label>
+            <label for="selectCategory">Select Warehouse *</label><!-- warehouse  -->
             <select class="form-control" id="selectCategory">
               <option>ឃ្លាំង ១</option>
               <option>ឃ្លាំង ២</option>
@@ -49,10 +49,10 @@
               <input type="file" class="form-control" id="productImage">
             </div>
           </div>
-          <div class="col-md-4 mb-3 form-check">
+          <!-- <div class="col-md-4 mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="productStatus">
             <label class="form-check-label" for="productStatus">Status (Checked=Hidden, UnChecked=Visible)</label>
-          </div>
+          </div> -->
           <button type="submit" class="btn btn-primary">Save</button>
           <button type="button" class="btn btn-danger" onclick="window.history.back();">Back</button>
         </form>

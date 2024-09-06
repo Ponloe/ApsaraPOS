@@ -22,12 +22,12 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'warehouse' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
         ]);
 
         Category::create([
             'name' => $request->name,
-            'warehouse' => $request->warehouse,
+            'description' => $request->description,
         ]);
 
         return redirect()->route('categories.index')->with('success', 'Category added successfully.');
