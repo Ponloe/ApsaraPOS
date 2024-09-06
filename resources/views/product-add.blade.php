@@ -10,6 +10,10 @@
       <div class="card-body">
         <form>
           <div class="col-md-12 mb-3">
+            <label for="productName">Product Name *</label>
+            <input type="text" class="form-control" id="productName" placeholder="Enter product name">
+          </div>
+          <div class="col-md-12 mb-3">
             <label for="selectCategory">Select Category *</label>
             <select class="form-control" id="selectCategory">
               <option>កំពូល</option>
@@ -21,10 +25,6 @@
               <option>ឃ្លាំង ១</option>
               <option>ឃ្លាំង ២</option>
             </select>
-          </div>
-          <div class="col-md-12 mb-3">
-            <label for="productName">Product Name *</label>
-            <input type="text" class="form-control" id="productName" placeholder="Enter product name">
           </div>
           <div class="col-md-12 mb-3">
             <label for="productName">Code *</label>
