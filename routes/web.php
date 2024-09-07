@@ -44,6 +44,7 @@ Route::get('/add-product', [InventoryController::class, 'create'])->name('produc
 Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
 Route::get('/inventory/create', [InventoryController::class, 'create'])->name('inventory.create');
 Route::post('/inventory', [InventoryController::class, 'store'])->name('inventory.store');
+Route::delete('/inventory/{id}', [InventoryController::class, 'destroy'])->name('inventory.destroy');
 
 // Category
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');

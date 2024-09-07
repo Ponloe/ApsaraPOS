@@ -13,6 +13,11 @@
                 ស្ដុកទំនិញ
             </div>
             <div class="card-body">
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
@@ -39,7 +44,11 @@
                             <td class="text-center">
                                 <div class="d-flex justify-content-center">
                                     <button type="button" class="btn btn-primary btn-sm mr-2" data-toggle="modal">Edit</button>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal">Delete</button>
+                                    <form action="{{ route('inventory.destroy', $product->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
@@ -57,6 +66,11 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <!-- Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+function confirmDelete() {
+    return confirm('Are you sure you want to delete this product?');
+}
+</script>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Khmer&family=Moulpali&family=Noto+Sans Khmer:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
