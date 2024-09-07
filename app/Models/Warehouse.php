@@ -9,4 +9,9 @@ class Warehouse extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    public function inventories()
+    {
+        return $this->belongsToMany(Inventory::class, 'product_warehouse', 'warehouse_id', 'product_id');
+    }
 }

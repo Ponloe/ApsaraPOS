@@ -41,7 +41,9 @@ Route::delete('/warehouses/{warehouse}', [WarehouseController::class, 'destroy']
 // Product
 Route::get('/product', [InventoryController::class, 'index'])->name('product.index');
 Route::get('/add-product', [InventoryController::class, 'create'])->name('product.create');
-
+Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
+Route::get('/inventory/create', [InventoryController::class, 'create'])->name('inventory.create');
+Route::post('/inventory', [InventoryController::class, 'store'])->name('inventory.store');
 
 // Category
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
