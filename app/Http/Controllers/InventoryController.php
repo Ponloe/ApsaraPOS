@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inventory;
+use App\Models\Category;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,9 @@ class InventoryController extends Controller
 
     public function create()
     {
-        $warehouses = Warehouse::all(); // Fetch all warehouses
-        return view('product-add', compact('warehouses'));
+        $categories = Category::all();
+        $warehouses = Warehouse::all();
+        return view('product-add', compact('categories', 'warehouses'));
     }
 
     public function store(Request $request)

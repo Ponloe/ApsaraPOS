@@ -17,7 +17,9 @@
           <div class="col-md-12 mb-3">
             <label for="selectCategory">Select Category *</label>
             <select class="form-control" id="selectCategory" name="category_id" required>
-              <option value="1">កំពូល</option>
+              @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+              @endforeach
             </select>
           </div>
           <div class="col-md-12 mb-3">
