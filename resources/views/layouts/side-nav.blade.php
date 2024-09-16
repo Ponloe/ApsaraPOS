@@ -6,7 +6,7 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 Dashboard
             </a>
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('orders.create') }}">
                 <div class="sb-nav-link-icon"><i class="fas fa fa-archive"></i></div>
                 Create Order
             </a>
