@@ -60,29 +60,22 @@
                                 <td>{{ $order['price'] }}$</td>
                                 <td>{{ $order['code'] }}</td>
                                 <td>
-                                    <div class="quantity-buttons">
+                                    <div class="input-group">
                                         <form action="{{ route('orders.updateQuantity') }}" method="POST"
                                             style="display:inline;">
                                             @csrf
                                             <input type="hidden" name="index" value="{{ $index }}">
-                                            <button type="submit" class="btn btn-secondary btn-sm"
-                                                onclick="decrementQuantity(event)">-</button>
+                                            <input type="hidden" name="action" value="decrement">
+                                            <button type="submit" class="input-group-text">-</button>
                                         </form>
-
+                                        <input type="number" name="quantity" value="{{ $order['quantity'] }}"
+                                            class="quantityInput" min="1">
                                         <form action="{{ route('orders.updateQuantity') }}" method="POST"
                                             style="display:inline;">
                                             @csrf
                                             <input type="hidden" name="index" value="{{ $index }}">
-                                            <input type="number" name="quantity" value="{{ $order['quantity'] }}" min="1"
-                                                onchange="this.form.submit()" style="width: 50px;">
-                                        </form>
-
-                                        <form action="{{ route('orders.updateQuantity') }}" method="POST"
-                                            style="display:inline;">
-                                            @csrf
-                                            <input type="hidden" name="index" value="{{ $index }}">
-                                            <button type="submit" class="btn btn-secondary btn-sm"
-                                                onclick="incrementQuantity(event)">+</button>
+                                            <input type="hidden" name="action" value="increment">
+                                            <button type="submit" class="input-group-text">+</button>
                                         </form>
                                     </div>
                                 </td>
@@ -106,29 +99,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </main>
 <style>
-    .quantity-buttons {
-        display: flex;
-        align-items: center;
-    }
-
-    .quantity-buttons form {
-        margin: 0 5px;
-    }
-
-    .quantity-buttons button {
-        background-color: white;
-        border: 1px solid #ced4da;
-        color: #495057;
-        padding: 5px 10px;
-        cursor: pointer;
-    }
-
-    .quantity-buttons button:hover {
-        background-color: #e9ecef;
-    }
-
-    .quantity-buttons span {
-        margin: 0 10px;
+    .quantityInput {
+        width: 50px;
+        padding: 6px 3px;
+        text-align: center;
+        border: 1px solid #cfb1b1;
+        outline: 0;
+        margin: 1px;
     }
 </style>
 

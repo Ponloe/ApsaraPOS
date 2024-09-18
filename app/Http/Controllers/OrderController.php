@@ -97,12 +97,14 @@ class OrderController extends Controller
                 $orders[$index]['quantity']++;
             } elseif ($action == 'decrement' && $orders[$index]['quantity'] > 1) {
                 $orders[$index]['quantity']--;
+            } elseif ($request->has('quantity')) {
+                $orders[$index]['quantity'] = $request->quantity;
             }
         }
 
         // Store the updated orders array in the session
         session()->put('orders', $orders);
 
-        return redirect()->route('orders.create')->with('success', 'Order quantity updated successfully.');
+        return redirect()->route('orders.create');
     }
 }
