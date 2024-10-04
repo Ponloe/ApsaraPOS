@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Inventory;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
@@ -106,5 +107,32 @@ class OrderController extends Controller
         session()->put('orders', $orders);
 
         return redirect()->route('orders.create');
+    }
+
+    public function confirm(Request $request)
+    {
+        $orders = session()->get('orders', []);
+
+        if (empty($orders)) {
+            return redirect()->route('orders.create')->with('error', 'No orders to confirm.');
+        }
+
+        foreach ($orders as $order) {
+            Order::create([
+                'product' => $order['product'],
+                'quantity' => $order['quantity'],
+                'order_code' => $this->generateOrderCode(),
+            ]);
+        }
+
+        // Clear the session orders
+        session()->forget('orders');
+
+        return redirect()->route('orders.create')->with('success', 'Order confirmed successfully.');
+    }
+
+    private function generateOrderCode()
+    {
+        return 'ORD-' . strtoupper(uniqid());
     }
 }

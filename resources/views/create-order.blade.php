@@ -79,6 +79,10 @@
                         @endforeach
                     </tbody>
                 </table>
+                <form action="{{ route('orders.confirm') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-success mt-3">Confirm Order</button>
+                </form>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <?php
-// database/migrations/xxxx_xx_xx_create_orders_table.php
+// database/migrations/2024_09_16_070210_create_orders_table.php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -11,9 +11,9 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('customer_name');
             $table->string('product');
             $table->integer('quantity');
+            $table->string('order_code', 191)->unique();
             $table->timestamps();
         });
     }
