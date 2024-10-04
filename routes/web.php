@@ -59,7 +59,8 @@ Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name(
 
 // Order
 Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
-Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+Route::post('/orders/store', [OrderController::class, 'store'])->name('orders.store');
 Route::post('/orders/remove', [OrderController::class, 'remove'])->name('orders.remove');
 Route::post('/orders/update-quantity', [OrderController::class, 'updateQuantity'])->name('orders.updateQuantity');
 Route::post('/orders/confirm', [OrderController::class, 'confirm'])->name('orders.confirm');
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');

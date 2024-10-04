@@ -9,6 +9,11 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        $orders = Order::all(); // Fetch all orders from the database
+        return view('view-order', compact('orders'));
+    }
     public function create()
     {
         $products = Inventory::all(); // Fetch all products from the Inventory model

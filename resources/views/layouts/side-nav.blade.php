@@ -10,7 +10,7 @@
                 <div class="sb-nav-link-icon"><i class="fas fa fa-archive"></i></div>
                 Create Order
             </a>
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('orders.index') }}">
                 <div class="sb-nav-link-icon"><i class="fas fa fa-archive"></i></div>
                 Orders
             </a>
