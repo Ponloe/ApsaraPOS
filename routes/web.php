@@ -64,3 +64,4 @@ Route::post('/orders/remove', [OrderController::class, 'remove'])->name('orders.
 Route::post('/orders/update-quantity', [OrderController::class, 'updateQuantity'])->name('orders.updateQuantity');
 Route::post('/orders/confirm', [OrderController::class, 'confirm'])->name('orders.confirm');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+Route::get('/orders/receipt/{order_code}', [OrderController::class, 'showReceipt'])->name('orders.receipt');

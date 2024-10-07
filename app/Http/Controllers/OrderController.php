@@ -11,7 +11,16 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::all(); // Fetch all orders from the database
+        $orders = Order::all()->groupBy('order_code');
+
+        foreach ($orders as $orderGroup) {
+            foreach ($orderGroup as $order) {
+                if (is_string($order->items)) {
+                    $order->items = json_decode($order->items, true);
+                }
+            }
+        }
+
         return view('view-order', compact('orders'));
     }
     public function create()
@@ -123,21 +132,41 @@ class OrderController extends Controller
         }
 
         foreach ($orders as $order) {
-            Order::create([
+            $orderCode = $this->generateUniqueOrderCode();
+
+            $orderData = [
+                'order_code' => $orderCode,
                 'product' => $order['product'],
                 'quantity' => $order['quantity'],
-                'order_code' => $this->generateOrderCode(),
-            ]);
+                'items' => json_encode([$order])
+            ];
+
+            Order::create($orderData);
         }
 
         // Clear the session orders
         session()->forget('orders');
 
-        return redirect()->route('orders.create')->with('success', 'Order confirmed successfully.');
+        return redirect()->route('orders.receipt', ['order_code' => $orderCode])->with('success', 'Order confirmed successfully.');
     }
 
-    private function generateOrderCode()
+    private function generateUniqueOrderCode()
     {
-        return 'ORD-' . strtoupper(uniqid());
+        do {
+            $orderCode = 'ORD-' . strtoupper(uniqid());
+        } while (Order::where('order_code', $orderCode)->exists());
+
+        return $orderCode;
+    }
+
+    public function showReceipt($orderCode)
+    {
+        $orders = Order::where('order_code', $orderCode)->get();
+
+        foreach ($orders as $order) {
+            $order->items = json_decode($order->items, true);
+        }
+
+        return view('receipt', ['orders' => $orders]);
     }
 }

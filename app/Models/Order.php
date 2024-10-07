@@ -14,5 +14,10 @@ class Order extends Model
         'product',
         'quantity',
         'order_code',
+        'items' 
+    ];
+
+    protected $casts = [
+        'items' => 'array'
     ];
 }

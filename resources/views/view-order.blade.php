@@ -12,24 +12,35 @@
         @if($orders->isEmpty())
             <p>No orders found.</p>
         @else
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Order Code</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($orders as $order)
-                        <tr>
-                            <td>{{ $order->product }}</td>
-                            <td>{{ $order->quantity }}</td>
-                            <td>{{ $order->order_code }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            @foreach($orders as $orderCode => $orderGroup)
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h2>Order Code: {{ $orderCode }}</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($orderGroup as $order)
+                                    @foreach($order->items as $item)
+                                        <tr>
+                                            <td>{{ $item['product'] }}</td>
+                                            <td>{{ $item['quantity'] }}</td>
+                                            <td>{{ $item['price'] }}</td>
+                                        </tr>
+                                    @endforeach
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            @endforeach
         @endif
     </div>
 </main>

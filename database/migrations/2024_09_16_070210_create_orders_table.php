@@ -14,6 +14,7 @@ class CreateOrdersTable extends Migration
             $table->string('product');
             $table->integer('quantity');
             $table->string('order_code', 191)->unique();
+            $table->json('items'); 
             $table->timestamps();
         });
     }
