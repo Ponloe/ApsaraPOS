@@ -14,6 +14,10 @@
                 <div class="sb-nav-link-icon"><i class="fas fa fa-archive"></i></div>
                 Orders
             </a>
+            <a class="nav-link" href="{{ route('warehouse.index') }}">
+                <div class="sb-nav-link-icon"><i class="fas fa fa-house"></i></div>
+                ឃ្លាំង
+            </a>
             <div class="sb-sidenav-menu-heading">Inventory</div>
             <a class="nav-link" href="{{ route('warehouse.index') }}">
                 <div class="sb-nav-link-icon"><i class="fas fa fa-house"></i></div>
