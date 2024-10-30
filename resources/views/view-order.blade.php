@@ -2,47 +2,53 @@
 @section('content')
 
 <main>
-    <div class="container">
-        <h1>Orders List</h1>
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-        @if($orders->isEmpty())
-            <p>No orders found.</p>
-        @else
-            @foreach($orders as $orderCode => $orderGroup)
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h2>Order Code: {{ $orderCode }}</h2>
-                    </div>
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if($orders->isEmpty())
+        <p>No orders found.</p>
+    @else
+        <div class="container-fluid px-4">
+            <div class="card mt-4 shadow=sm">
+                <div class="card-header">
+                    <h4 class="md-0">Orders</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Order Code</th>
+                                <th>Customer Name</th>
+                                <th>Phone Number</th>
+                                <th>Payment Method</th>
+                                <th>Total</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($orders as $orderCode => $orderGroup)
                                 @foreach($orderGroup as $order)
                                     @foreach($order->items as $item)
                                         <tr>
-                                            <td>{{ $item['product'] }}</td>
-                                            <td>{{ $item['quantity'] }}</td>
+                                            <td>{{ $orderCode }}</td>
+                                            <td>Ponloe</td>
+                                            <td>089873536</td>
+                                            <td>ABA</td>
                                             <td>{{ $item['price'] }}</td>
+                                            <td>
+                                                <a href="#" class="btn btn-info mb-0 px-2 btn-sm">View</a>
+                                                <a href="#" class="btn btn-primary mb-0 px-2 btn-sm">Print</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
                 </div>
-            @endforeach
-        @endif
-    </div>
+    @endif
 </main>
 
 @endsection
