@@ -5,17 +5,17 @@
   <div class="container-fluid mt-4">
     <div class="card">
       <div class="card-header">
-        Add Products
+      បន្ថែមទំនិញ
       </div>
       <div class="card-body">
         <form action="{{ route('inventory.store') }}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="col-md-12 mb-3">
-            <label for="productName">Product Name *</label>
+            <label for="productName">ឈ្មោះទំនិញ *</label>
             <input type="text" class="form-control" id="productName" name="name" placeholder="Enter product name" required>
           </div>
           <div class="col-md-12 mb-3">
-            <label for="selectCategory">Select Category *</label>
+            <label for="selectCategory">ឈ្មោះប្រភេទ *</label>
             <select class="form-control" id="selectCategory" name="category_id" required>
               @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -23,7 +23,7 @@
             </select>
           </div>
           <div class="col-md-12 mb-3">
-            <label for="selectWarehouse">Select Warehouse *</label>
+            <label for="selectWarehouse">ជ្រើសរើសឃ្លាំង *</label>
             <select class="form-control" id="selectWarehouse" name="warehouse_id" required>
               @foreach($warehouses as $warehouse)
                 <option value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
@@ -31,20 +31,20 @@
             </select>
           </div>
           <div class="col-md-12 mb-3">
-            <label for="productCode">Code *</label>
+            <label for="productCode">កូដ *</label>
             <input type="text" class="form-control" id="productCode" name="code" placeholder="Enter Code" required>
           </div>
           <div class="row">
             <div class="col-md-4 mb-3">
-              <label for="productPrice">Price *</label>
+              <label for="productPrice">តម្លៃ *</label>
               <input type="number" class="form-control" id="productPrice" name="price" placeholder="Enter price" required>
             </div>
             <div class="col-md-4 mb-3">
-              <label for="productQuantity">Quantity *</label>
+              <label for="productQuantity">បរិមាណ *</label>
               <input type="number" class="form-control" id="productQuantity" name="quantity" placeholder="Enter quantity" required>
             </div>
             <div class="col-md-4 mb-3">
-              <label for="productImage">Image *</label>
+              <label for="productImage">រូបភាព*</label>
               <input type="file" class="form-control" id="productImage" name="image">
             </div>
           </div>
