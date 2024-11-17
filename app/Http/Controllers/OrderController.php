@@ -11,16 +11,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::all()->groupBy('order_code');
-
-        foreach ($orders as $orderGroup) {
-            foreach ($orderGroup as $order) {
-                if (is_string($order->items)) {
-                    $order->items = json_decode($order->items, true);
-                }
-            }
-        }
-
+        $orders = Order::with('items')->get();
         return view('view-order', compact('orders'));
     }
     public function create()
@@ -64,6 +55,7 @@ class OrderController extends Controller
         // If the product does not exist, add it to the orders array
         if (!$productExists) {
             $orders[] = [
+                'product_id' => $product->id,
                 'product' => $request->product,
                 'quantity' => $request->quantity,
                 'price' => $product->price,
@@ -131,24 +123,27 @@ class OrderController extends Controller
             return redirect()->route('orders.create')->with('error', 'No orders to confirm.');
         }
 
-        foreach ($orders as $order) {
-            $orderCode = $this->generateUniqueOrderCode();
+        $orderCode = $this->generateUniqueOrderCode();
 
-            $orderData = [
-                'order_code' => $orderCode,
-                'product' => $order['product'],
-                'quantity' => $order['quantity'],
-                'items' => json_encode([$order])
-            ];
+        // Create the Order
+        $order = Order::create(['order_code' => $orderCode]);
 
-            Order::create($orderData);
+        // Add items to the Order
+        foreach ($orders as $item) {
+            $order->items()->create([
+                'product_id' => $item['product_id'],
+                'product_name' => $item['product'],
+                // 'product_code' => $item['code'],
+                'price' => $item['price'],
+                'quantity' => $item['quantity'],
+            ]);
         }
 
-        // Clear the session orders
         session()->forget('orders');
 
         return redirect()->route('orders.receipt', ['order_code' => $orderCode])->with('success', 'Order confirmed successfully.');
     }
+
 
     private function generateUniqueOrderCode()
     {
@@ -161,12 +156,7 @@ class OrderController extends Controller
 
     public function showReceipt($orderCode)
     {
-        $orders = Order::where('order_code', $orderCode)->get();
-
-        foreach ($orders as $order) {
-            $order->items = json_decode($order->items, true);
-        }
-
-        return view('receipt', ['orders' => $orders]);
+        $order = Order::with('items')->where('order_code', $orderCode)->firstOrFail();
+        return view('receipt', compact('order'));
     }
 }

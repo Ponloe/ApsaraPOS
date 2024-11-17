@@ -7,17 +7,16 @@
             {{ session('success') }}
         </div>
     @endif
-
-    @if($orders->isEmpty())
-        <p>No orders found.</p>
-    @else
-        <div class="container-fluid px-4">
-            <div class="card mt-4 shadow=sm">
-                <div class="card-header">
-                    <h4 class="md-0">Orders</h4>
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered">
+    <div class="container-fluid px-4">
+        <div class="card mt-4 shadow=sm">
+            <div class="card-header">
+                <h4 class="md-0">Orders</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    @if($orders->isEmpty())
+                        <p>No orders found.</p>
+                    @else
                         <thead>
                             <tr>
                                 <th>Order Code</th>
@@ -29,26 +28,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($orders as $orderCode => $orderGroup)
-                                @foreach($orderGroup as $order)
+                            @foreach($orders as $order)
+                                @if($order->items && $order->items->isNotEmpty())
                                     @foreach($order->items as $item)
                                         <tr>
-                                            <td>{{ $orderCode }}</td>
+                                            <td>{{ $order->order_code }}</td>
                                             <td>Ponloe</td>
-                                            <td>089873536</td>
+                                            <td>0123456789</td>
                                             <td>ABA</td>
-                                            <td>{{ $item['price'] }}</td>
+                                            <td>{{ $item->price * $item->quantity }}$</td>
                                             <td>
                                                 <a href="#" class="btn btn-info mb-0 px-2 btn-sm">View</a>
                                                 <a href="#" class="btn btn-primary mb-0 px-2 btn-sm">Print</a>
                                             </td>
                                         </tr>
                                     @endforeach
-                                @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="6">No items found for this order.</td>
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
-                </div>
-    @endif
+                    @endif
+                </table>
+            </div>
+        </div>
+    </div>
 </main>
 
 @endsection

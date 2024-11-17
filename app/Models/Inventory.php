@@ -20,4 +20,10 @@ class Inventory extends Model
     {
         return $this->belongsToMany(Warehouse::class, 'product_warehouse', 'product_id', 'warehouse_id');
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(OrderItem::class, 'order_items', 'product_id', 'order_id')
+            ->withPivot('product_name', 'price', 'quantity');
+    }
 }

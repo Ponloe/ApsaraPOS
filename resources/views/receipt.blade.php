@@ -1,44 +1,34 @@
-@extends ('layouts.master')
+@extends('layouts.master')
 @section('content')
+    <h1>Order Receipt</h1>
+    <p>Order Code: {{ $order->order_code }}</p>
 
-<main>
-    <div class="containers">
-        <h1>Receipt</h1>
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-        @if(session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
-        @foreach($orders as $order)
-            <p>Order Code: {{ $order->order_code }}</p>
-            <table class="table">
-                <thead>
+    @if($order->items && $order->items->isNotEmpty())
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Code</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($order->items as $item)
                     <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Total</th>
+                        <td>{{ $item->product_name }}</td>
+                        <td>{{ $item->product_code }}</td>
+                        <td>{{ $item->price }}$</td>
+                        <td>{{ $item->quantity }}</td>
+                        <td>{{ $item->price * $item->quantity }}$</td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach($order->items as $item)
-                        <tr>
-                            <td>{{ $item['product'] }}</td>
-                            <td>{{ $item['quantity'] }}</td>
-                            <td>{{ $item['price'] }}$</td>
-                            <td>{{ $item['price'] * $item['quantity'] }}$</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @endforeach
-        <button onclick="window.print()" class="btn btn-primary">Print Receipt</button>
-    </div>
-</main>
+                @endforeach
+            </tbody>
+        </table>
 
+        <p><strong>Grand Total: </strong> {{ $order->items->sum(fn($item) => $item->price * $item->quantity) }}$</p>
+    @else
+        <p>No items found for this order.</p>
+    @endif
 @endsection
