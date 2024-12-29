@@ -1,0 +1,48 @@
+services:
+  app:
+    image: php:8.3-apache
+    container_name: apsarapos-app
+    networks:
+      - apsara-network
+    command: bash -c "
+      apt-get update &&
+      apt-get install -y default-mysql-client libpq-dev &&
+      docker-php-ext-install pdo pdo_mysql &&
+      a2enmod rewrite &&
+      apache2-foreground"
+
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    depends_on:
+      - mysql
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  mysql:
+    image: mysql:8.0
+    container_name: apsarapos-mysql
+    networks:
+      - apsara-network
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: apsarapos
+      MYSQL_USER: apsaraposuser
+      MYSQL_PASSWORD: apsarapassword
+    volumes:
+      - db_data:/var/lib/mysql
+
+networks:
+  apsara-network:
+    driver: bridge
+
+
+volumes:
+  db_data:
